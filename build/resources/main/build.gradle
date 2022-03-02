@@ -1,7 +1,9 @@
 <#if (loomVersion.originalIndex <= 9)>
     <#assign depType="Compile">
+		<#assign combat="1_8">
 <#else>
     <#assign depType="Implementation">
+		<#assign combat="16">
 </#if>
 
 plugins {
@@ -9,8 +11,8 @@ plugins {
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_${combat}
+targetCompatibility = JavaVersion.VERSION_${combat}
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version

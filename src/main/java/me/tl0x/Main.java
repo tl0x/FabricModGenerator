@@ -43,7 +43,10 @@ public class Main {
     public static final Pattern IDENT_REGEX = Pattern.compile("^[A-Za-z$_][A-Za-z0-9$_]*$");
 
     public static void main(String[] args) {
-        System.out.println("GeneratorFabricMod version 0.1.4");
+        System.out.println("FabricModGenerator 0.0.1");
+        System.out.println("Credit for a large amount of the code goes to ExtraCrafTX");
+        System.out.println("https://github.com/ExtraCrafTX");
+
         try {
             Interface prompter = new Interface();
             DataProvider dataProvider = new DataProvider();

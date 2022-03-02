@@ -77,7 +77,7 @@ public class TemplateMakerFabric {
 
 
         if(contains(DataProvider.LICENSES, mod.getLicense()))
-            outputFile(mod, dir, fileStartCallback, fileEndCallback, "licenses/"+mod.getLicense().value+".txt", "LICENSE");
+            outputFile(mod, dir, fileStartCallback, fileEndCallback, "licenses/"+mod.getLicense().value+".txt", outfolder + "/LICENSE");
     }
 
     private void outputFabricModJson(FabricMod mod, Path dir, Consumer<String> fileStartCallback,
