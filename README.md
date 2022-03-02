@@ -14,16 +14,16 @@ and [**TemplateMakerFabric**](https://github.com/ExtraCrafTX/TemplateMakerFabric
 2. Unpack the folder where you want
 3. Add the bin folder to your PATH variable.
 
-Windows:
+##### Windows:
 
 - Search Environment Variables in your search menu.
 - You should open System Properties. Press the Environment Variables in the bottom right.
 - Select Path in the System Variables section and press Edit.
 - Press new and add your path. (Linking to the bin folder)
 
-Linux/Mac:
+##### Linux/Mac:
 
-###### Run this command.
+##### Run this command.
 ```
 $ export PATH=$PATH:/your/path/FabricModGenerator/bin
 ```
