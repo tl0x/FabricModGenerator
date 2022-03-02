@@ -1,2 +1,0 @@
-Copyright (c) ${.now?string('yyyy')} ${author}
-All rights reserved.
