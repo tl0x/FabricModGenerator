@@ -16,6 +16,7 @@ public class ${mainClass} implements ModInitializer {
     @Override
     public void onInitialize() {
         log(Level.INFO, "Initializing");
+        log(Level.INFO, "Hello World!");
         //TODO: Initializer
     }
 

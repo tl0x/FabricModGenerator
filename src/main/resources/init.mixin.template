@@ -1,4 +1,9 @@
+package ${mainPackage?join(".")}.mixin;
 
-public class Mixin {
+import org.spongepowered.asm.mixin.Mixin;
+import net.minecraft.client.gui.screen.Screen;
+
+@Mixin(Screen.class)
+public class ExampleMixin {
 
 }

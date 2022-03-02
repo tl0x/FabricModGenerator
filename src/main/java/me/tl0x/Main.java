@@ -44,8 +44,9 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("FabricModGenerator 0.0.1");
+        System.out.println("Hope this works.... \n\n");
         System.out.println("Credit for a large amount of the code goes to ExtraCrafTX");
-        System.out.println("https://github.com/ExtraCrafTX");
+        System.out.println("https://github.com/ExtraCrafTX\n");
 
         try {
             Interface prompter = new Interface();

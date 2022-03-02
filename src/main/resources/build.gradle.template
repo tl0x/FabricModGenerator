@@ -18,8 +18,7 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-minecraft {
-}
+
 
 dependencies {
 	//to change the versions see the gradle.properties file
@@ -32,6 +31,7 @@ dependencies {
 </#if>
 }
 
+<#if (loomVersion.originalIndex <= 9)>
 processResources {
 	inputs.property "version", project.version
 
@@ -44,6 +44,15 @@ processResources {
 		exclude "fabric.mod.json"
 	}
 }
+<#else>
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+</#if>
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
 // this fixes some edge cases with special characters not displaying correctly

@@ -61,7 +61,7 @@ public class TemplateMakerFabric {
                 outfolder + "/gradle/wrapper/gradle-wrapper.properties");
 
         outputFile(mod, dir, fileStartCallback, fileEndCallback, "gradle.properties", outfolder + "/gradle.properties");
-        outputFile(mod, dir, fileStartCallback, fileEndCallback, "build.gradle", outfolder + "/build.gradle");
+        outputFile(mod, dir, fileStartCallback, fileEndCallback, "build.gradle.template", outfolder + "/build.gradle");
 
         outputFile(mod, dir, fileStartCallback, fileEndCallback, "init.java.template",
                 outfolder + "/src/main/java/" + String.join("/", mod.getMainPackage()) + "/" + mod.getMainClass() + ".java");
