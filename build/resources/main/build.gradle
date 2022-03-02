@@ -3,6 +3,7 @@
 <#else>
     <#assign depType="Implementation">
 </#if>
+
 plugins {
 	id 'fabric-loom' version '${loomVersion}'
 	id 'maven-publish'

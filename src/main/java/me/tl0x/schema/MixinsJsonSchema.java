@@ -9,7 +9,7 @@ public class MixinsJsonSchema {
     public boolean required = true;
     @SerializedName("package")
     public String pkg;
-    public String compatibilityLevel = "JAVA_8";
+    public String compatibilityLevel = "JAVA_16";
     public List<String> mixins = new ArrayList<>();
     public List<String> client = new ArrayList<>();
     public List<String> server = new ArrayList<>();

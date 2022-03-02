@@ -1,3 +1,4 @@
+
 plugins {
     id 'java'
 }
@@ -9,16 +10,26 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'me.tl0x.Main'
+        )
+    }
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     implementation 'org.freemarker:freemarker:2.3.29'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.jline:jline:3.15.0'
+    implementation 'org.jline:jline:3.21.0'
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
 
 }
 
 test {
     useJUnitPlatform()
 }
+

@@ -31,6 +31,7 @@ public class TemplateMakerFabric {
 
     private Configuration cfg;
     private Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private String outfolder = "modout";
 
     public TemplateMakerFabric() {
         cfg = new Configuration(Configuration.VERSION_2_3_29);
@@ -48,28 +49,32 @@ public class TemplateMakerFabric {
 
     public void outputMod(FabricMod mod, Path dir, Consumer<String> fileStartCallback, Consumer<String> fileEndCallback)
             throws FileNotFoundException, IOException, Exception {
-        copyFile(mod, dir, fileStartCallback, fileEndCallback, ".gitignore.template", ".gitignore");
-        copyFile(mod, dir, fileStartCallback, fileEndCallback, "settings.gradle", "settings.gradle");
+        copyFile(mod, dir, fileStartCallback, fileEndCallback, ".gitignore.template",  outfolder + "/.gitignore");
+        copyFile(mod, dir, fileStartCallback, fileEndCallback, "settings.gradle", outfolder + "/settings.gradle");
 
         String gradleBase = "gradle" + mod.getLoomVersion().gradle + "/";
-        copyFileExecutable(mod, dir, fileStartCallback, fileEndCallback, gradleBase + "gradlew", "gradlew");
-        copyFile(mod, dir, fileStartCallback, fileEndCallback, gradleBase + "gradlew.bat", "gradlew.bat");
+        copyFileExecutable(mod, dir, fileStartCallback, fileEndCallback, gradleBase + "gradlew", outfolder + "/gradlew");
+        copyFile(mod, dir, fileStartCallback, fileEndCallback, gradleBase + "gradlew.bat", outfolder + "/gradlew.bat");
         copyFile(mod, dir, fileStartCallback, fileEndCallback, gradleBase + "gradle-wrapper.jar",
-                "gradle/wrapper/gradle-wrapper.jar");
+                outfolder + "/gradle/wrapper/gradle-wrapper.jar");
         copyFile(mod, dir, fileStartCallback, fileEndCallback, gradleBase + "gradle-wrapper.properties",
-                "gradle/wrapper/gradle-wrapper.properties");
+                outfolder + "/gradle/wrapper/gradle-wrapper.properties");
 
-        outputFile(mod, dir, fileStartCallback, fileEndCallback, "gradle.properties", "gradle.properties");
-        outputFile(mod, dir, fileStartCallback, fileEndCallback, "build.gradle", "build.gradle");
+        outputFile(mod, dir, fileStartCallback, fileEndCallback, "gradle.properties", outfolder + "/gradle.properties");
+        outputFile(mod, dir, fileStartCallback, fileEndCallback, "build.gradle", outfolder + "/build.gradle");
 
         outputFile(mod, dir, fileStartCallback, fileEndCallback, "init.java.template",
-                "src/main/java/" + String.join("/", mod.getMainPackage()) + "/" + mod.getMainClass() + ".java");
+                outfolder + "/src/main/java/" + String.join("/", mod.getMainPackage()) + "/" + mod.getMainClass() + ".java");
         copyFile(mod, dir, fileStartCallback, fileEndCallback, "cobblestone.png",
-                "src/main/resources/assets/" + mod.getModId() + "/icon.png");
+                outfolder + "/src/main/resources/assets/" + mod.getModId() + "/icon.png");
 
         outputFabricModJson(mod, dir, fileStartCallback, fileEndCallback);
         if(mod.isMixin())
             outputMixinsJson(mod, dir, fileStartCallback, fileEndCallback);
+            outputFile(mod, dir, fileStartCallback, fileEndCallback, "init.mixin.template",
+                outfolder + "/src/main/java/" + String.join("/", mod.getMainPackage()) + "/mixin/" + "ExampleMixin.java");
+
+
 
         if(contains(DataProvider.LICENSES, mod.getLicense()))
             outputFile(mod, dir, fileStartCallback, fileEndCallback, "licenses/"+mod.getLicense().value+".txt", "LICENSE");
@@ -101,7 +106,7 @@ public class TemplateMakerFabric {
             obj.depends.put("fabric", "*");
         }
 
-        outputJson(obj, dir, fileStartCallback, fileEndCallback, "src/main/resources/fabric.mod.json");
+        outputJson(obj, dir, fileStartCallback, fileEndCallback, outfolder + "/src/main/resources/fabric.mod.json");
     }
 
     private void outputMixinsJson(FabricMod mod, Path dir, Consumer<String> fileStartCallback,
@@ -109,7 +114,7 @@ public class TemplateMakerFabric {
         MixinsJsonSchema obj = new MixinsJsonSchema();
         obj.pkg = String.join(".", mod.getMainPackage()) + ".mixin";
 
-        outputJson(obj, dir, fileStartCallback, fileEndCallback, "src/main/resources/"+mod.getModId()+".mixins.json");
+        outputJson(obj, dir, fileStartCallback, fileEndCallback, outfolder + "/src/main/resources/"+mod.getModId()+".mixins.json");
     }
 
     private void copyFile(FabricMod mod, Path dir, Consumer<String> fileStartCallback, Consumer<String> fileEndCallback,
