@@ -84,6 +84,11 @@ public class Interface{
         }
     }
 
+    public void printGreenMsg(String message) {
+        brightGreen(); System.out.println(message);
+        reset();
+    }
+
     public String prompt(String prompt){
         return prompter.prompt(prompt, null, s->null);
     }

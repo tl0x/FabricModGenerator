@@ -25,6 +25,7 @@ public class FabricModBuilder{
     private LoaderVersion loaderVersion;
     private String mavenGroup;
     private String archiveName;
+    private String outFolder;
 
     public void setMcVersion(MinecraftVersion mcVersion) {
         this.mcVersion = mcVersion;
@@ -106,9 +107,13 @@ public class FabricModBuilder{
         this.archiveName = archiveName;
     }
 
+    public void setOutFolder(String outFolder) {
+        this.outFolder = outFolder;
+    }
+
     public FabricMod build(){
         try{
-            FabricMod mod = new FabricMod(mcVersion, modName, modId, modDescription, modVersion, author, homepage, sources, license, nameOnLicense, mainPackage, mainClass, mixin, fabricApi, apiVersion, yarnVersion, loomVersion, loaderVersion, mavenGroup, archiveName);
+            FabricMod mod = new FabricMod(mcVersion, modName, modId, modDescription, modVersion, author, homepage, sources, license, nameOnLicense, mainPackage, mainClass, mixin, fabricApi, apiVersion, yarnVersion, loomVersion, loaderVersion, mavenGroup, archiveName, outFolder);
             return mod;
         }catch(IllegalArgumentException e){
             throw new IllegalStateException(e.getMessage(), e);

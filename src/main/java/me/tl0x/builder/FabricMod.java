@@ -28,11 +28,12 @@ public class FabricMod {
     private final LoaderVersion loaderVersion;
     private final String mavenGroup;
     private final String archiveName;
+    private final String outFolder;
 
     public FabricMod(MinecraftVersion mcVersion, String modName, String modId, String modDescription, String modVersion,
                      String author, URL homepage, URL sources, License license, String nameOnLicense, String mainPackage,
                      String mainClass, boolean mixin, boolean fabricApi, FabricApiVersion apiVersion, YarnVersion yarnVersion,
-                     LoomVersion loomVersion, LoaderVersion loaderVersion, String mavenGroup, String archiveName) {
+                     LoomVersion loomVersion, LoaderVersion loaderVersion, String mavenGroup, String archiveName, String outFolder) {
         this.mcVersion = ensureExists(mcVersion, "Minecraft version");
         this.modName = ensureNotEmpty(modName, "Mod name");
         this.modId = ensureNotEmpty(modId, "Mod id");
@@ -57,6 +58,7 @@ public class FabricMod {
         this.loaderVersion = ensureExists(loaderVersion, "Loader version");
         this.mavenGroup = String.join(".", ensureValidPackage(mavenGroup, "Maven group"));
         this.archiveName = ensureNotEmpty(archiveName, "Archive base name");
+        this.outFolder = outFolder;
     }
 
     /**
@@ -199,4 +201,7 @@ public class FabricMod {
         return archiveName;
     }
 
+    public String getOutFolder() {
+        return outFolder;
+    }
 }

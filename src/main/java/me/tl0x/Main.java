@@ -42,16 +42,20 @@ public class Main {
             .compile("^([A-Za-z$_][A-Za-z0-9$_]*\\.)*[A-Za-z$_][A-Za-z0-9$_]*$");
     public static final Pattern IDENT_REGEX = Pattern.compile("^[A-Za-z$_][A-Za-z0-9$_]*$");
 
+
     public static void main(String[] args) {
-        System.out.println("FabricModGenerator 0.0.1");
-        System.out.println("Hope this works.... \n\n");
-        System.out.println("Credit for a large amount of the code goes to ExtraCrafTX");
-        System.out.println("https://github.com/ExtraCrafTX\n");
+
 
         try {
             Interface prompter = new Interface();
             DataProvider dataProvider = new DataProvider();
             TemplateMakerFabric templateMaker = new TemplateMakerFabric();
+
+
+            prompter.printGreenMsg("FabricModGenerator 0.0.2\n");
+            System.out.println("Credit for a large amount of the code goes to ExtraCrafTX");
+            System.out.println("https://github.com/ExtraCrafTX\n");
+
 
             prompter.startSpinner("Getting Minecraft versions... ", INTERVAL, SPINNER);
             ArrayList<MinecraftVersion> mcVersions = dataProvider.getMinecraftVersions();
@@ -86,6 +90,7 @@ public class Main {
                     prompter.promptList("Minecraft version:", true, defaultMcVersion, mcVersions.toArray())
             );
 
+            String outFolder = prompter.prompt("Output folder:", s -> s.isEmpty() ? "You must input an output folder" : null);
             String modName = prompter.prompt("Mod name:", s -> s.isEmpty() ? "You must input a name" : null);
             String modId = prompter.prompt("Mod id (must be unique):",
                     s -> s.isEmpty() ? "You must input a mod id" : null);
@@ -208,6 +213,7 @@ public class Main {
             builder.setLoaderVersion(loaderVersion);
             builder.setMavenGroup(mavenGroup);
             builder.setArchiveName(archiveName);
+            builder.setOutFolder(outFolder);
             FabricMod mod = builder.build();
 
             templateMaker.outputMod(mod, Paths.get(""),

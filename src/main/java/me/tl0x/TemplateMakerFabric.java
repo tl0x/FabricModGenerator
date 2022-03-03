@@ -31,7 +31,6 @@ public class TemplateMakerFabric {
 
     private Configuration cfg;
     private Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-    private String outfolder = "modout";
 
     public TemplateMakerFabric() {
         cfg = new Configuration(Configuration.VERSION_2_3_29);
@@ -49,6 +48,7 @@ public class TemplateMakerFabric {
 
     public void outputMod(FabricMod mod, Path dir, Consumer<String> fileStartCallback, Consumer<String> fileEndCallback)
             throws FileNotFoundException, IOException, Exception {
+        String outfolder = mod.getOutFolder();
         copyFile(mod, dir, fileStartCallback, fileEndCallback, ".gitignore.template",  outfolder + "/.gitignore");
         copyFile(mod, dir, fileStartCallback, fileEndCallback, "settings.gradle", outfolder + "/settings.gradle");
 
@@ -82,6 +82,7 @@ public class TemplateMakerFabric {
 
     private void outputFabricModJson(FabricMod mod, Path dir, Consumer<String> fileStartCallback,
                                      Consumer<String> fileEndCallback) throws IOException {
+        String outfolder = mod.getOutFolder();
         FabricModJsonSchema obj = new FabricModJsonSchema();
         obj.id = mod.getModId();
         obj.version = "${version}";
@@ -111,6 +112,7 @@ public class TemplateMakerFabric {
 
     private void outputMixinsJson(FabricMod mod, Path dir, Consumer<String> fileStartCallback,
                                   Consumer<String> fileEndCallback) throws IOException {
+        String outfolder = mod.getOutFolder();
         MixinsJsonSchema obj = new MixinsJsonSchema();
         obj.pkg = String.join(".", mod.getMainPackage()) + ".mixin";
 
