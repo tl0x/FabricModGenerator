@@ -1,9 +1,10 @@
 package me.tl0x.schema;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MixinsJsonSchema {
     public boolean required = true;
@@ -14,4 +15,8 @@ public class MixinsJsonSchema {
     public List<String> client = new ArrayList<>();
     public List<String> server = new ArrayList<>();
     public Injectors injectors = new Injectors();
+
+    public void addMixin() {
+        mixins.add("ExampleMixin");
+    }
 }

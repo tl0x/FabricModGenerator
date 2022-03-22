@@ -1,9 +1,16 @@
 package ${mainPackage?join(".")}.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.client.gui.screen.Screen;
 
 @Mixin(Screen.class)
 public class ExampleMixin {
 
+    @Inject(method="sendMessage(Ljava/lang/String;)V", at=@At("HEAD"), cancellable = true)
+    public void sendMessage(CallbackInfo ci) {
+
+    }
 }

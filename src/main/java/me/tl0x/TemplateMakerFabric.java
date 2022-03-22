@@ -169,7 +169,14 @@ public class TemplateMakerFabric {
             output.getParentFile().mkdirs();
 
         FileWriter fw = new FileWriter(output);
-        fw.append(gson.toJson(obj));
+
+        if (obj instanceof MixinsJsonSchema mjs){
+            mjs.addMixin();
+            fw.append(gson.toJson(mjs));
+        } else {
+            fw.append(gson.toJson(obj));
+        }
+
         fw.close();
 
         if (fileEndCallback != null)

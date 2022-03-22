@@ -5,6 +5,10 @@ A small program to allow you  to easily generate fabric mods.
 Most of the code was taken from [**GeneratorFabricMod**](https://github.com/ExtraCrafTX/GeneratorFabricMod) 
 and [**TemplateMakerFabric**](https://github.com/ExtraCrafTX/TemplateMakerFabric). I made this program as they were outdated and aren't being maintained.
 
+### Planned Features:
+- Quilt and Mojmap support
+- Probably some common dependency options (ARRP, Some other libs)
+
 ## Installation
 
 1. Download the [**release**](https://github.com/tl0x/FabricModGenerator/releases/tag/releases)

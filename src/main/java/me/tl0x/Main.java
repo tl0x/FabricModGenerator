@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 
 public class Main {
 
+    public static final String MOD_VERSION = "0.0.3";
+
     public static final String[] SPINNER = {
             "[    ]",
             "[=   ]",
@@ -52,7 +54,7 @@ public class Main {
             TemplateMakerFabric templateMaker = new TemplateMakerFabric();
 
 
-            prompter.printGreenMsg("FabricModGenerator 0.0.2\n");
+            prompter.printGreenMsg("FabricModGenerator " + MOD_VERSION + "\n");
             System.out.println("Credit for a large amount of the code goes to ExtraCrafTX");
             System.out.println("https://github.com/ExtraCrafTX\n");
 
@@ -90,7 +92,7 @@ public class Main {
                     prompter.promptList("Minecraft version:", true, defaultMcVersion, mcVersions.toArray())
             );
 
-            String outFolder = prompter.prompt("Output folder:", s -> s.isEmpty() ? "You must input an output folder" : null);
+            String outFolder = prompter.prompt("Output folder: (Input ./ for current folder) ", s -> s.isEmpty() ? "You must input an output folder" : null);
             String modName = prompter.prompt("Mod name:", s -> s.isEmpty() ? "You must input a name" : null);
             String modId = prompter.prompt("Mod id (must be unique):",
                     s -> s.isEmpty() ? "You must input a mod id" : null);
